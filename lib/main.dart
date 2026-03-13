@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'data/datasources/product_cache_datasource.dart';
 import 'data/datasources/product_remote_datasource.dart';
 import 'data/repositories/product_repository_impl.dart';
 import 'presentation/pages/product_page.dart';
@@ -8,8 +9,12 @@ import 'presentation/viewmodels/product_viewmodel.dart';
 void main() {
   // Configuração da Injeção de Dependências (Responsabilidade de um DI / Service Locator)
   final httpClient = http.Client();
-  final datasource = ProductRemoteDatasourceImpl(client: httpClient);
-  final repository = ProductRepositoryImpl(remoteDatasource: datasource);
+  final remoteDatasource = ProductRemoteDatasourceImpl(client: httpClient);
+  final cacheDatasource = ProductCacheDatasource();
+  final repository = ProductRepositoryImpl(
+    remoteDatasource: remoteDatasource,
+    cacheDatasource: cacheDatasource,
+  );
   final viewModel = ProductViewModel(repository: repository);
 
   runApp(MyApp(viewModel: viewModel));
