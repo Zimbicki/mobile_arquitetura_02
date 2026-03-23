@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../viewmodels/product_viewmodel.dart';
 import '../viewmodels/product_state.dart';
+import 'product_details_page.dart';
 
 class ProductPage extends StatefulWidget {
   final ProductViewModel viewModel;
@@ -71,8 +72,14 @@ class _ProductPageState extends State<ProductPage> {
                   'U\$ ${product.price.toStringAsFixed(2)}',
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.green),
-                ),
-              );
+                ),                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductDetailsPage(product: product),
+                    ),
+                  );
+                },              );
             },
           );
         },

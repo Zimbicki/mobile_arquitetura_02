@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'data/datasources/product_cache_datasource.dart';
 import 'data/datasources/product_remote_datasource.dart';
 import 'data/repositories/product_repository_impl.dart';
-import 'presentation/pages/product_page.dart';
+import 'presentation/pages/home_page.dart';
 import 'presentation/viewmodels/product_viewmodel.dart';
 
 void main() {
@@ -34,8 +34,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // Passa o ViewModel instanciado para a página 
-      home: ProductPage(viewModel: viewModel),
+      // Passa o ViewModel instanciado para a página
+      home: HomePage(viewModel: viewModel),
     );
   }
 }
